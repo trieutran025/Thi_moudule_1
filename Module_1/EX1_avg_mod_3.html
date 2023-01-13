@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr=[];
+    let n=+prompt("Enter Array length:");
+    while(n>50){
+        n=+prompt("Enter Array length:")
+    }
+    for (let i = 0; i <n ; i++) {
+        arr[i]=+prompt("Enter element value "+i+":");
+    }
+    for (let i = 0; i <arr.length ; i++) {
+        document.write(arr[i]+"&ensp;&ensp;");
+    }
+    let sum=0;
+    let count=0;
+    for (let i = 0; i <arr.length ; i++) {
+        if(arr[i]%3===0){
+            sum+=arr[i];
+            count++;
+        }
+    }
+    let avg=sum/count;
+    document.write("<br>Average of Numbers Mod 3 :"+avg);
+</script>
+</body>
+</html>

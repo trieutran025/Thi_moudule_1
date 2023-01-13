@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function checkDate(date) {
+        let total=0;
+        let isLeap=false;
+        let year=parseInt(date.slice(3,7));
+        let month=parseInt(date.slice(0,2));
+        if(year%4===0){
+            if(year%100===0)isLeap=true;
+            else if(year % 400 ===0) isLeap=true;
+            else{
+                isLeap=true;
+            }
+        }
+        switch (month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                total=31;
+                break;
+            case 4: case 6: case 9: case 11:
+                total=30;
+                break;
+            case 2:
+                if(isLeap===true){
+                    total=29;
+                }
+                else total=28;
+                break;
+            default:
+                document.write("Vui Lòng nhập đúng tháng");
+        }
+        return total;
+    }
+    function dateIsValid(dateStr) {
+        const regex = /^\d{2}\/\d{4}$/;
+
+        if (dateStr.match(regex) === null) {
+            return false;
+        }
+
+        const [ month, year] = dateStr.split('/');
+        const isoFormattedStr = `${year}-${month}`;
+
+        const date = new Date(isoFormattedStr);
+
+        const timestamp = date.getTime();
+
+        if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
+            return false;
+        }
+        return date.toISOString().startsWith(isoFormattedStr);
+    }
+
+    let date=prompt("Nhập tháng năm đúng định dạng mm/yyyy");
+    if(dateIsValid(date)){
+        let result=checkDate(date);
+        document.write(result);
+    }
+    else {
+        document.write("Vui lòng nhập đúng định dạng!(mm/yyyy)");
+    }
+</script>
+</body>
+</html>
